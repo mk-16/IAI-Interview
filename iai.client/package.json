@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
+    "test:coverage": "npm run test -- --coverage --watchAll=false",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
