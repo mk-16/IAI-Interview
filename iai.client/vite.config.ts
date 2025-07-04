@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import plugin from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
@@ -39,7 +39,19 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [plugin()],
+    plugins: [ plugin() ],
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './src/setupTests.ts', 
+        css: true,
+        coverage: {
+            provider: 'v8',
+            reporter: [ 'text', 'json', 'html' ],
+            exclude: [ 'node_modules/', 'src/main.tsx' ],
+        },
+        exclude: [ '**/node_modules/**', '**/dist/**', '**/e2e/**' ],
+    },
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -47,7 +59,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
+            '^/iai': {
                 target,
                 secure: false
             }
