@@ -8,4 +8,16 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\components\Card\" />
+    <Folder Include="src\components\Input\" />
+    <Folder Include="src\components\Container\" />
+    <Folder Include="src\components\Panel\" />
+    <Folder Include="src\components\Switch\" />
+    <Folder Include="src\contexts\" />
+    <Folder Include="src\features\MapView\" />
+    <Folder Include="src\features\Catalog\" />
+    <Folder Include="src\features\MapControls\" />
+    <Folder Include="src\features\VehicleControls\" />
+  </ItemGroup>
 </Project>
