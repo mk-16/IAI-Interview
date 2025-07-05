@@ -2,7 +2,7 @@
     border-radius: 5px;
 }
 
-.container:not(.metadata-container) {
+.container.map-viewer-container {
     display: flex;
     position: relative;
     height: 60vh;

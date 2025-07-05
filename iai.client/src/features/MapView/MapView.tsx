@@ -115,9 +115,9 @@ function MapView () {
     const [ isHovered, setIsHovered ] = useState(false);
 
     return (
-        <Container>
+        <Container classNames="map-viewer-container" >
             <div className='map-viewer' ref={ containerRef }></div>
-            <Container classNames="metadata-container" setIsHovered={ setIsHovered } handleClick={ copyCoordinate } >
+            <Container classNames="metadata-container"  setIsHovered={ setIsHovered } handleClick={ copyCoordinate } >
                 <CopyIcon isActive={ isHovered } />
                 <span>{ coordinate?.latitude ?? ddToDMS(32.08683899020884, "latitude") } </span>
                 <span> { coordinate?.longitude ?? ddToDMS(32.08683899020884, "longitude") }</span>

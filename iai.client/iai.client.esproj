@@ -25,5 +25,6 @@
     <Folder Include="src\features\MapControls\" />
     <Folder Include="src\features\MapView\utils\" />
     <Folder Include="src\features\VehicleControls\" />
+    <Folder Include="src\pages\PreviewPage\" />
   </ItemGroup>
 </Project>

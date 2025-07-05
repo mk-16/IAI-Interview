@@ -1,0 +1,41 @@
+.vehicle-config {
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0px 0px 5px 1px grey;
+    height: calc(100vh - 59vh - 2in);
+}
+
+
+.vehicle-coordiante {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4rem;
+    position: relative;
+    transition: box-shadow 300ms ease;
+}
+
+.vehicle-coordiante:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 2px inset lightblue;
+}
+.vehicle-latitude,
+.vehicle-longitude,
+.vehicle-height 
+{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.vehicle-segment-option, 
+.vehicle-speed-range {
+    padding: 1rem 4rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.vehicle-speed-range-input {
+    display: flex;
+    align-items: center;
+}
