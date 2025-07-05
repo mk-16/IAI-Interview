@@ -9,16 +9,21 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="src\assets\NewFolder\**" />
+    <TypeScriptConfiguration Remove="src\assets\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\components\Card\" />
     <Folder Include="src\components\Input\" />
     <Folder Include="src\components\Container\" />
     <Folder Include="src\components\CloseIcon\" />
+    <Folder Include="src\components\CopyIcon\" />
     <Folder Include="src\components\Panel\" />
     <Folder Include="src\components\Switch\" />
     <Folder Include="src\contexts\" />
-    <Folder Include="src\features\MapView\" />
     <Folder Include="src\features\Catalog\" />
     <Folder Include="src\features\MapControls\" />
+    <Folder Include="src\features\MapView\utils\" />
     <Folder Include="src\features\VehicleControls\" />
   </ItemGroup>
 </Project>

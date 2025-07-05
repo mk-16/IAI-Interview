@@ -1,0 +1,15 @@
+.copy-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("./src/assets/copy.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image 300ms ease;
+}
+
+.copy-icon-active, .copy-icon:hover {
+    background-image: url("./src/assets/copy_lb.png");
+    transition: background-image 300ms ease;
+}
+
