@@ -12,6 +12,7 @@
     <Folder Include="src\components\Card\" />
     <Folder Include="src\components\Input\" />
     <Folder Include="src\components\Container\" />
+    <Folder Include="src\components\CloseIcon\" />
     <Folder Include="src\components\Panel\" />
     <Folder Include="src\components\Switch\" />
     <Folder Include="src\contexts\" />

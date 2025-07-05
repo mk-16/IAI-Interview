@@ -1,0 +1,37 @@
+.switch {
+    position: relative;
+    width: .5in;
+    height: .25in;
+    border-radius: .2in;
+    background-color: dimgrey;
+    box-shadow: 0px 0px 5px 0px black inset;
+    transition: background-color .3s ease;
+    -webkit-appearance: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.switch:checked {
+    background-color: lightblue;
+}
+
+.switch:not(:checked)::before, .switch:checked::before {
+    content: '';
+    position: absolute;
+    top: .025in;
+    width: .20in;
+    height: .20in;
+    border-radius: 100%;
+    background-color: white;
+    transition: all .3s ease;
+}
+
+.switch:not(:checked)::before {
+    box-shadow: 1px 0px 3px 0px black;
+    transform: translateX(.02in);
+}
+
+.switch:checked::before {
+    box-shadow: -1px 0px 3px 0px black;
+    transform: translateX(0.28in);
+}

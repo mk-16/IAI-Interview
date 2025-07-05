@@ -1,0 +1,13 @@
+.card {
+    position: relative;
+    min-height: 1in;
+    min-width: 3in;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.close-icon {
+    position:absolute;
+    top:.5rem;
+    right:.5rem;
+}

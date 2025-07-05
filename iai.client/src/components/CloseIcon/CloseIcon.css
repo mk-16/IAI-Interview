@@ -1,0 +1,14 @@
+.close-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("./src/assets/close.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image 300ms ease;
+}
+
+.close-icon:hover {
+    background-image: url("./src/assets/close_lb.png");
+    transition: background-image 300ms ease;
+}
