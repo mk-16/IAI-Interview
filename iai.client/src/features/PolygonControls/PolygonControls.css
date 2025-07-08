@@ -1,0 +1,13 @@
+.card {
+    display: flex;
+    flex-direction:column;
+    gap: 1rem;
+}
+
+.polygon-actions {
+    display: flex;
+    gap: 1rem;
+}
+button {
+    flex-grow:1;
+}

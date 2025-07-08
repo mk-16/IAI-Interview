@@ -29,20 +29,3 @@
 .map-viewer:hover {
     box-shadow: 0px 0px 5px 2px lightblue;
 }
-
-
-
-.metadata-container {
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    padding: 1rem 5rem;
-    box-shadow: 0px 0px 5px 2px grey;
-    transition: box-shadow 300ms ease;
-}
-
-.metadata-container:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 5px 2px inset lightblue;
-}

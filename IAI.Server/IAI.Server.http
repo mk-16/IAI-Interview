@@ -1,6 +1,61 @@
 @IAI.Server_HostAddress = http://localhost:5115
 
-GET {{IAI.Server_HostAddress}}/weatherforecast/
+GET {{IAI.Server_HostAddress}}/api/polygons
 Accept: application/json
-
 ###
+
+POST {{IAI.Server_HostAddress}}/api/polygon
+Content-Type: application/json
+Accept: application/json
+{
+    "coordinates": [
+        [
+            [
+                3981128.401095156,
+                3939202.9097297993
+            ],
+            [
+                3981120.239129738,
+                3939172.812653557
+            ],
+            [
+                3981129.3613253045,
+                3939168.035339289
+            ],
+            [
+                3981128.401095156,
+                3939202.9097297993
+            ]
+        ],
+    "height": 123
+}
+###
+
+DELETE {{IAI.Server_HostAddress}}/api/polygons
+Content-Type: application/json
+Accept: application/json
+[
+   "686b4714850fa15c3ef7f233" 
+]
+###
+
+
+GET {{IAI.Server_HostAddress}}/api/route
+Accept: application/json
+###
+
+POST {{IAI.Server_HostAddress}}/api/route
+Content-Type: application/json
+Accept: application/json
+{
+    "coordinates": [[1,2],[2,3],[3,2]]
+}
+###
+DELETE {{IAI.Server_HostAddress}}/api/route
+Content-Type: application/json
+Accept: application/json
+[
+
+]
+
+

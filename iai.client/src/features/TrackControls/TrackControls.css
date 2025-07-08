@@ -1,0 +1,10 @@
+
+button {
+    flex-grow: 1;
+}
+
+.animation-actions {
+    display: flex;
+    gap: 1rem;
+}
+

@@ -1,128 +1,96 @@
-import { Feature, Map, View } from "ol";
-import * as Control from "ol/control";
-import { Point } from "ol/geom";
+import { Map, View } from "ol";
 import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
-import { fromLonLat, toLonLat } from "ol/proj";
+import { fromLonLat } from "ol/proj";
 import { Vector, XYZ } from "ol/source";
+import Fill from "ol/style/Fill";
 import Icon from "ol/style/Icon";
+import Stroke from "ol/style/Stroke";
 import Style from "ol/style/Style";
-import { useEffect, useRef, useState, type RefObject } from "react";
-import './MapView.css';
+import { useContext, useEffect, useRef, type RefObject } from "react";
 import Container from "../../components/Container/Container";
-import CopyIcon from "../../components/CopyIcon/CopyIcon";
-import { ddToDMS } from "./utils/utils";
-
-function MapView () {
-    const [ coordinate, setCoordinate ] = useState<{ longitude: string, latitude: string; } | null>(null);
-    const [ height, ] = useState<number>(0);
+import { ViewContext } from "../../contexts/ViewContext/ViewContext";
+import './MapView.css';
+import { useSelect } from "./utils/utils";
+function MapView() {
+    const view = useContext(ViewContext);
     const containerRef: RefObject<HTMLDivElement | null> = useRef(null);
     const viewerRef: RefObject<null | Map> = useRef(null);
-    const [ state, setState ] = useState<Map | null>(null);
-
+    useSelect(view);
     useEffect(() => {
         if (containerRef.current && !viewerRef.current) {
-            const iconGeometry = new Point(fromLonLat([ 34.7895211602588, 32.08683899020884 ])); // Replace with your coordinates
             const iconStyle = new Style({
                 image: new Icon({
                     anchor: [ .5, .5 ],
                     scale: [ 1, 1 ],
-                    //width: 24,
-                    //height: 24,
-                    //anchorXUnits: 'fraction',
-                    //anchorYUnits: 'fraction',
-                    src: './src/assets/jeep.png'
+                    src: './src/assets/jeep_lb.png',
                 }),
             });
 
-            const iconFeature = new Feature({
-                geometry: iconGeometry,
+            const fillStyle = new Fill({
+                color: 'rgba(255, 255, 255, 0.2)'
             });
 
-            iconFeature.setStyle(iconStyle);
-            const vectorSource = new Vector({
-                features: [ iconFeature ],
-
+            const strokeStyle = new Stroke({
+                color: '#ffcc33',
+                width: 2
             });
 
-
-            const vectorLayer = new VectorLayer({
-                //minZoom: 15,
+            const fovLayer = new VectorLayer({
+                className: 'fov-layer',
                 zIndex: 3,
-                source: vectorSource,
-            });
+                source: new Vector(),
 
-
-            const viewer = new Map({
-
-                target: containerRef.current,
-                controls: Control.defaults({
-                    zoom: false,
-                    rotate: false,
-                }),
-                layers: [
-                    vectorLayer,
-                    new TileLayer({
-                        source: new XYZ({
-                            url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                            maxZoom: 18,
-                            minZoom: 0,
-                        }) // Use OpenStreetMap as the tile source
-                    }),
-                ],
-                view: new View({
-                    center: fromLonLat([ 34.7895211602588, 32.08683899020884 ]), // Initial center coordinates (longitude, latitude)
-                    zoom: 18, // Initial zoom level
+                style: new Style({
+                    stroke: strokeStyle,
+                    fill: fillStyle,
                 }),
             });
-            setState(viewer);
-            viewerRef.current = viewer;
-            containerRef?.current.addEventListener('mousemove', (event) => {
-                const coordinates = viewer.getEventCoordinateInternal(event) ?? [ 0, 0 ];
-                const [ longitude, latitude ] = toLonLat(coordinates);
-                setCoordinate({ longitude: ddToDMS(longitude, "longitude"), latitude: ddToDMS(latitude, "latitude") });
+            const carLayer = new VectorLayer({
+                className: 'car-layer',
+                zIndex: 4,
+                style: iconStyle,
+                source: new Vector(),
+            });
+            const polygonsLayer = new VectorLayer({
+                className: 'polygons-layer',
+                zIndex: 1,
+                source: new Vector(),
             });
 
+            const linestringsLayer = new VectorLayer({
+                className: 'linestring-layer',
+                zIndex: 2,
+                style: new Style({
+                    stroke: new Stroke({
+                        width: 6, // Set the desired line width in pixels
+                        color: 'yellow',
+                        lineDash: [ 10, 40 ] //or other combinations
+                    })
+                }),
+                source: new Vector(),
+            });
+
+            const tileLayer = new TileLayer({
+                source: new XYZ({
+                    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                    maxZoom: 18,
+                    minZoom: 0,
+                })
+            });
+
+            view.setTarget(containerRef.current);
+            view.setLayers([ polygonsLayer, linestringsLayer, fovLayer, carLayer, tileLayer ]);
+            view.setView(new View({
+                center: fromLonLat([ -122.82824089398729, 49.842873037394355 ]),
+                zoom: 18, 
+            }));
         }
-        //return () => clearInterval(interval);
-
-    }, [ state, containerRef, viewerRef ]);
-
-
-    useEffect(() => {
-        //const url = `https://api.open-meteo.com/v1/elevation?latitude=${ _coordinate?.latitude ?? 0 }&longitude=${ _coordinate?.longitude ?? 0 }`;
-        //const controller = new AbortController();
-        //const signal = controller.signal;
-        //const timer = setTimeout(() => {
-        //    controller.abort();
-        //}, 10000);
-
-        //fetch(url, { signal }).then(response => response.json()).then(results => {
-        //    setCoordinate(_coordinate);
-        //    setHeight(results.elevation[ 0 ]);
-        //})
-        //.catch(console.log);
-
-        return () => {
-            //clearTimeout(timer);
-        };
-        //}, [ _coordinate ]);
-    }, []);
-    function copyCoordinate () {
-        navigator.clipboard.writeText(`${ coordinate?.latitude } ${ coordinate?.longitude }`);
-    }
-
-    const [ isHovered, setIsHovered ] = useState(false);
+    }, [ containerRef, viewerRef ]);
 
     return (
         <Container classNames="map-viewer-container" >
             <div className='map-viewer' ref={ containerRef }></div>
-            <Container classNames="metadata-container"  setIsHovered={ setIsHovered } handleClick={ copyCoordinate } >
-                <CopyIcon isActive={ isHovered } />
-                <span>{ coordinate?.latitude ?? ddToDMS(32.08683899020884, "latitude") } </span>
-                <span> { coordinate?.longitude ?? ddToDMS(32.08683899020884, "longitude") }</span>
-                <span>{ height }m { `\u00B1` }90m</span>
-            </Container>
         </Container>
     );
 }

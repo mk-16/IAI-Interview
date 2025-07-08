@@ -20,10 +20,13 @@
     <Folder Include="src\components\CopyIcon\" />
     <Folder Include="src\components\Panel\" />
     <Folder Include="src\components\Switch\" />
-    <Folder Include="src\contexts\" />
+    <Folder Include="src\contexts\ViewContext\" />
     <Folder Include="src\features\Catalog\" />
+    <Folder Include="src\features\LineStringControls\utils\" />
     <Folder Include="src\features\MapControls\" />
     <Folder Include="src\features\MapView\utils\" />
+    <Folder Include="src\features\PolygonControls\utils\" />
+    <Folder Include="src\features\TrackControls\utils\" />
     <Folder Include="src\features\VehicleControls\" />
     <Folder Include="src\pages\PreviewPage\" />
   </ItemGroup>
