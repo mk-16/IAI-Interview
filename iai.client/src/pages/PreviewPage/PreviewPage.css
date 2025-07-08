@@ -1,0 +1,10 @@
+section.map-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.card {
+    box-shadow: 0 0 5px 1px black;
+}
