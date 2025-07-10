@@ -12,7 +12,7 @@ import VectorSource from "ol/source/Vector";
 export function isPolygonGuard(feature: Feature): feature is Feature<Polygon> {
     return feature.getGeometry()?.getType() == 'Polygon';
 }
-export async function drawPolygon(view: Map): Promise<Feature> {
+export async function drawPolygon(view: Map) {
     const source = view.getAllLayers().find(layer => layer.getClassName() == 'polygons-layer')?.getSource() as VectorSource;
     const drawInteraction = new Draw(({
         source,

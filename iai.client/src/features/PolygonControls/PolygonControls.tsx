@@ -6,11 +6,12 @@ import { ViewContext } from "../../contexts/ViewContext/ViewContext";
 import './PolygonControls.css';
 import { deletePolygons, drawPolygon, isPolygonGuard } from "./utils/utils";
 import { Select } from "ol/interaction";
+import type { Polygon } from "ol/geom";
 function PolygonControls() {
     const view = useContext(ViewContext);
     const [ drawing, setDrawing ] = useState(false);
-    const [ selectedPolygons, setSelectedPolygons ] = useState<Set<Feature>>(new Set());
-    const [ polygons, setPolygons ] = useState<Set<Feature>>(new Set());
+    const [ selectedPolygons, setSelectedPolygons ] = useState<Set<Feature<Polygon>>>(new Set());
+    const [ polygons, setPolygons ] = useState<Set<Feature<Polygon>>>(new Set());
 
     useEffect(() => {
         const interaction = view.getInteractions().getArray().find(interation => interation instanceof Select);
@@ -40,7 +41,7 @@ function PolygonControls() {
 
 
     function handleDelete(all?: boolean) {
-        deletePolygons(view, all ? polygons : selectedPolygons);
+        deletePolygons(view, !!all ? polygons : selectedPolygons);
         setPolygons(state => {
             if (all) {
                 return new Set();
