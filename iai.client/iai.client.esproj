@@ -8,4 +8,18 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\Components\Compounds\Actions\utils\" />
+    <Folder Include="src\Components\Compounds\TrackActions\" />
+    <Folder Include="src\Components\controls\" />
+    <Folder Include="src\Components\core\Button\" />
+    <Folder Include="src\Components\core\Container\" />
+    <Folder Include="src\Components\core\MapViewer\utils\enums\" />
+    <Folder Include="src\Components\core\MapViewer\utils\SourceEffects\" />
+    <Folder Include="src\Components\core\Toggle\" />
+    <Folder Include="src\Components\Compounds\Panel\" />
+    <Folder Include="src\Components\Compounds\PolygonActions\" />
+    <Folder Include="src\Contexts\LayerContext\" />
+    <Folder Include="src\Features\" />
+  </ItemGroup>
 </Project>

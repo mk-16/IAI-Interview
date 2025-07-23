@@ -1,11 +1,11 @@
-﻿#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+﻿main {
+    display: flex;
+    justify-content: center;
+/*    align-items: center;*/
+    height: inherit;
+    width: inherit;
+    /*    width:*/
+    /*    border-color: #5f6872ee*/
+    /*    box-shadow: #757d85ee*/
 }
 
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}

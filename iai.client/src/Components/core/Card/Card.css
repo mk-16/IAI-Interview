@@ -1,0 +1,16 @@
+.card {
+    position: relative;
+    min-height: 1in;
+    min-width: 3in;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px #757d85ee;
+    backdrop-filter: blur(6px);
+}
+
+/*.close-icon {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+}
+*/

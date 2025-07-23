@@ -1,0 +1,18 @@
+.map-viewer {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid#5f6872ee;
+    box-shadow: 0 0 10px 3px #757d85ee inset;
+/*    width: calc(100% - 2rem);*/
+    width: 100%;
+    max-width: 1920px;
+    min-width: calc(320px - 2rem);
+    max-height: 720px;
+    min-height: calc(320px - 2rem);
+    padding: 1rem;
+}
+
+.ol-viewport {
+    border-radius: 10px;
+/*    box-shadow: 0 0 10px 3px #757d85ee;*/
+}
